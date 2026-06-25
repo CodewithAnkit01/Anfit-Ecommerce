@@ -167,7 +167,9 @@ const fetchWishlist = async () => {
                     </button>
 
                     <button
-                      onClick={() => handleRemove(item.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRemove(item.id)}}
                       className="w-12 h-12 flex items-center justify-center border rounded-xl hover:bg-red-50 hover:border-red-200"
                     >
                       <Trash2

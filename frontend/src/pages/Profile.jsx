@@ -180,7 +180,7 @@ export default function Profile() {
                               <div className="flex items-center gap-4">
                                 <img
                                   src={
-                                    item.product?.image ||
+                                    item.product?.imageUrl ||
                                     "https://placehold.co/100x100"
                                   }
                                   alt={item.product?.name}

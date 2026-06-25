@@ -7,9 +7,7 @@ export const checkout = async (req, res) => {
     const { phone, address, city } = req.body;
 
     const cartItems = await prisma.cartItem.findMany({
-      where: {
-        userId,
-      },
+      where: { userId },
       include: {
         product: true,
       },
@@ -19,6 +17,15 @@ export const checkout = async (req, res) => {
       return res.status(400).json({
         message: "Cart is empty",
       });
+    }
+
+    // Stock validation
+    for (const item of cartItems) {
+      if (item.product.stock < item.quantity) {
+        return res.status(400).json({
+          message: `${item.product.name} is out of stock`,
+        });
+      }
     }
 
     const totalPrice = cartItems.reduce(
@@ -37,6 +44,7 @@ export const checkout = async (req, res) => {
       },
     });
 
+    // Create order items + decrease stock
     for (const item of cartItems) {
       await prisma.orderItem.create({
         data: {
@@ -47,16 +55,30 @@ export const checkout = async (req, res) => {
         },
       });
 
-      await prisma.product.update({
-        where: {
-          id: item.productId,
-        },
-        data: {
-          stock: {
-            decrement: item.quantity,
+      const updatedProduct =
+        await prisma.product.update({
+          where: {
+            id: item.productId,
           },
-        },
-      });
+          data: {
+            stock: {
+              decrement: item.quantity,
+            },
+          },
+        });
+
+      console.log(
+        "Product ID:",
+        item.productId
+      );
+      console.log(
+        "Quantity:",
+        item.quantity
+      );
+      console.log(
+        "Updated Stock:",
+        updatedProduct.stock
+      );
     }
 
     await prisma.cartItem.deleteMany({
@@ -70,6 +92,8 @@ export const checkout = async (req, res) => {
       order,
     });
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({
       message: error.message,
     });

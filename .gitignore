@@ -10,16 +10,3 @@ backend/.env
 # Logs
 *.log
 
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/Anfit-Ecommerce.git
-git push -u origin main
-
-git config --global user.name "YOUR_NAME"
-git config --global user.email "YOUR_GITHUB_EMAIL"
-
-git add .
-git commit -m "Updated project"
-git push origin main
