@@ -65,7 +65,7 @@
 
                   <input
                       type="text"
-                      placeholder="John Doe"
+                      placeholder="Enter a name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
@@ -83,7 +83,7 @@
 
                   <input
                       type="email"
-                      placeholder="john@example.com"
+                      placeholder="test@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
