@@ -27,8 +27,10 @@ const [loadingCartId, setLoadingCartId] = useState(null);
 
   const fetchProducts = async () => {
     try {
+      
       const res = await getProducts();
-      console.log(res.data.products);
+       
+  
       
       setProducts(res.data.products || []);
       

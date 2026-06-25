@@ -22,6 +22,7 @@ const [products, setProducts] = useState([]);
   const fetchTrendingProducts = async () => {
     try {
       const res = await getTrendingProducts();
+      
       setProducts(res.data);
     } catch (error) {
       toast.error(
