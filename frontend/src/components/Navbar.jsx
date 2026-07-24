@@ -59,7 +59,7 @@ useEffect(() => {
     localStorage.removeItem("user");
 
     setUser(null);
-    window.dispatchEvent(new Event("storage"));
+    window.dispatchEvent(new Event("authChange"));
     toast.success("Logged out successfully 👋");
     navigate("/login");
   };

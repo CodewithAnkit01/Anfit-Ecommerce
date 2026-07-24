@@ -1,13 +1,16 @@
+
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
-
-  if (!token) {
+if (!token) {
+  setTimeout(() => {
     toast.warning("Please login first");
-    return <Navigate to="/login" replace />;
-  }
+  }, 0);
+
+  return <Navigate to="/login" />;
+}
 
   return children;
 }
