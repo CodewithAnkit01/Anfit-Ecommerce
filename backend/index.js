@@ -9,7 +9,7 @@
   app.use("/uploads", express.static("uploads"));
 
   app.use(cors({
-    origin: ["http://localhost:5173",
+    origin: ["https://anfit-frontend.onrender.com",
     "http://192.168.1.7:5173",],
     credentials: true,
   }));
