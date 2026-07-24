@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:"https://anfit-ecommerce.onrender.com/api",
+  baseURL:"https://anfit-ecommerce.onrender.com",
 });
 
 // Request interceptor (attach token)
