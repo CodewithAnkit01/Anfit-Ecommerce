@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:"https://anfit-backend.onrender.com/v1",
+  baseURL:"https://anfitbackend.onrender.com/v1",
 });
 
 // Request interceptor (attach token)
